@@ -1,0 +1,127 @@
+<script>
+var w={};
+var ab=[];
+var ar=[];
+var v=[];
+const proxyUrl='https://cors-anywhere.herokuapp.com/';
+
+fetch( proxyUrl + 'https://www.google.com/basepages/producttype/taxonomy-with-ids.en-US.txt' )
+.then(e=>{return e.text()})
+.then(res=> {var a = res.split("\n")
+var b=a.shift();
+b= a.map((val)=>{ const d= val.split("-")[1];
+return d;
+});
+
+// console.log(b);
+for (i=0;i<b.length-1;i++){
+	 res=b[i].split('>');
+	 	ar[i]=res;
+	}
+
+ // console.log(ar);
+k=0;l=0;
+for (j=0;j<ar.length;j++){
+		
+	if(ar[j].length=='1'){
+		a=ar[j];
+
+		w[ar[j]]={};
+		  
+	}
+	else if(ar[j].length=='2') 
+	{	
+		
+
+		ab[k]=ar[j];
+		
+		k++;
+	}
+	else if(ar[j].length=='3') 
+	{	
+		
+
+		v[l]=ar[j];
+		
+		l++;
+	}
+
+}
+for (i=0;i<ab.length;i++){
+	
+	 	// console.log(ab[i]);
+	 	ab[i][0]=ab[i][0].trim();
+	 	v[i][1]=v[i][1].trim();
+	}
+
+for (const [key, value] of Object.entries(w)) {
+	// console.log(`${key}`);
+	var x = document.getElementById("cat");
+var option = document.createElement("option");
+option.text = `${key}`;
+
+x.add(option);
+ 
+for(i=0;i<ab.length;i++){
+ 
+}}
+
+
+
+
+      console.log(v);
+   // console.log(ab);
+   console.log(w);
+});
+function fun(){
+var y = document.getElementById("sub");
+y.innerHTML="";
+	 var z = document.getElementById("cat").value;
+	 z=z.trim();
+	 for (i=0;i<ab.length;i++){
+	if( ab[i][0]==z){
+		
+
+ var opt = document.createElement("option");
+ opt.text = ab[i][1];
+
+ y.add(opt);
+
+	}
+	}}
+
+	function fun1(){
+var j = document.getElementById("child");
+j.innerHTML="";
+	 var r = document.getElementById("sub").value;
+	 r=r.trim();
+
+	 for (i=0;i<ab.length;i++){
+
+	if( v[i][1]==r){
+		
+
+ var opt = document.createElement("option");
+ opt.text = v[i][2];
+
+ j.add(opt);
+
+	}
+	}
+
+ 
+// console.log(ab);
+}
+</script>
+<select id="cat" onchange="fun()">
+
+	
+</select>
+<select id="sub" onchange="fun1()">
+
+	
+</select>
+<select id="child">
+
+	
+</select>
